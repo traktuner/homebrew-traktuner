@@ -3,7 +3,7 @@ cask "microsoft-defender" do
   sha256 :no_check
 
   url "https://officecdn-microsoft-com.akamaized.net/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/wdav.pkg",
-    verified: "officecdn-microsoft-com.akamaized.net"
+      verified: "officecdn-microsoft-com.akamaized.net/"
   name "Microsoft Defender for Endpoint"
   desc "Antivirus software"
   homepage "https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"
@@ -26,23 +26,24 @@ cask "microsoft-defender" do
         },
       ]
 
-  uninstall script:  {
-              executable: "/Library/Application\ Support/Microsoft/Defender/uninstall/uninstall",
+  postflight do
+    system_command "/bin/bash",
+                   args: ["-c", "~/Library/'Mobile Documents'/com~apple~CloudDocs/config/microsoft-defender/MicrosoftDefenderATPOnboardingMacOs.sh"], sudo: true
+  end
+
+  uninstall quit:    "com.microsoft.autoupdate2",
+            script:  {
+              executable: "/Library/Application Support/Microsoft/Defender/uninstall/uninstall",
               sudo:       true,
             },
             pkgutil: [
               "com.microsoft.dlp.agent",
               "com.microsoft.dlp.daemon",
               "com.microsoft.dlp.ux",
-            ],
-            quit:    "com.microsoft.autoupdate2"
+            ]
 
   zap trash: [
     "~/Library/Group Containers/*com.microsoft.wdav/MicrosoftDefender.sqlite*",
     "~/Library/Logs/Microsoft/Defender",
   ]
-
-  postflight do
-    system_command "/bin/bash", args: ["-c", "~/Library/'Mobile\ Documents'/com~apple~CloudDocs/config/microsoft-defender/MicrosoftDefenderATPOnboardingMacOs.sh"], sudo: true
-  end
 end
