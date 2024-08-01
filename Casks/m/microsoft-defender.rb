@@ -1,5 +1,5 @@
 cask "microsoft-defender" do
-  version "101.24032.0006"
+  version "101.24052.0013"
   sha256 :no_check
 
   url "https://officecdn-microsoft-com.akamaized.net/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/wdav.pkg",
