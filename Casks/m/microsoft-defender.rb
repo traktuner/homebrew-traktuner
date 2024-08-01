@@ -2,7 +2,7 @@ cask "microsoft-defender" do
   version "101.24032.0006"
   sha256 "b5e8b9401c396da3d4f8ad56d3b358bb4ec91973b4614b8d6bf67243ae892796"
 
-  url "https://officecdn-microsoft-com.akamaized.net/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/wdav.pkg"
+  url "https://officecdn-microsoft-com.akamaized.net/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/wdav.pkg",
     verified: "officecdn-microsoft-com.akamaized.net"
   name "Microsoft Defender for Endpoint"
   desc "Antivirus software"
