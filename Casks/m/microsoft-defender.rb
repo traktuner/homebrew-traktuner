@@ -1,6 +1,6 @@
 cask "microsoft-defender" do
-  version "101.24052.0013"
-  sha256 "b5e8b9401c396da3d4f8ad56d3b358bb4ec91973b4614b8d6bf67243ae892797"
+  version "101.24032.0006"
+  sha256 :no_check
 
   url "https://officecdn-microsoft-com.akamaized.net/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/wdav.pkg"
   name "Microsoft Defender for Endpoint"
