@@ -9,7 +9,6 @@ on:
   schedule:
     # Every 3 hours 23 minutes past the hour
     - cron: "23 */3 * * *"
-  workflow_dispatch:
 
 permissions:
   contents: read
