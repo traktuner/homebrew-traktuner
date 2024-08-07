@@ -17,7 +17,7 @@ cask "microsoft-defender" do
   depends_on cask: "microsoft-auto-update"
   depends_on macos: ">= :big_sur"
 
-  pkg "wdav.pkg",
+  pkg "Microsoft_Defender_#{version}_Individuals_Installer.pkg",
       choices: [
         {
           "choiceIdentifier" => "com.microsoft.package.Microsoft_AutoUpdate.app",
