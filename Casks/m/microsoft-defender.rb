@@ -17,7 +17,7 @@ cask "microsoft-defender" do
   depends_on cask: "microsoft-auto-update"
   depends_on macos: ">= :big_sur"
 
-  pkg "wdav.pkg",
+  pkg "Microsoft_Defender_#{version}_Individuals_Installer.pkg",
       choices: [
         {
           "choiceIdentifier" => "com.microsoft.package.Microsoft_AutoUpdate.app",
@@ -29,7 +29,7 @@ cask "microsoft-defender" do
   postflight do
     system_command "/bin/bash",
                    args: ["-c", "~/Library/'Mobile Documents'/com~apple~CloudDocs/config/microsoft-defender/" \
-                          "MicrosoftDefenderATPOnboardingMacOs.sh"], sudo: true
+                                "MicrosoftDefenderATPOnboardingMacOs.sh"], sudo: true
   end
 
   uninstall quit:    "com.microsoft.autoupdate2",
