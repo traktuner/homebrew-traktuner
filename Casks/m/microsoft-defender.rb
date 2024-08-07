@@ -1,6 +1,3 @@
-# typed: true
-# frozen_string_literal: true
-
 cask "microsoft-defender" do
   version "101.24052.0013"
   sha256 "b1f346a5a0ab23b90df143471be4a2ab8e6d1f04489dd43210203e4bf3a0b5b9"
