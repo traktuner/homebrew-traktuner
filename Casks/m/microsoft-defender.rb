@@ -1,8 +1,8 @@
 cask "microsoft-defender" do
   version "101.24052.0013"
-  sha256 "b1f346a5a0ab23b90df143471be4a2ab8e6d1f04489dd43210203e4bf3a0b5b9"
+  sha256 :no_check
 
-  url "https://officecdnmac.microsoft.com/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Defender_#{version}_Individuals_Installer.pkg",
+  url "https://officecdn-microsoft-com.akamaized.net/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/wdav.pkg",
       verified: "officecdn-microsoft-com.akamaized.net/"
   name "Microsoft Defender for Endpoint"
   desc "Antivirus software"
@@ -17,7 +17,7 @@ cask "microsoft-defender" do
   depends_on cask: "microsoft-auto-update"
   depends_on macos: ">= :big_sur"
 
-  pkg "Microsoft_Defender_#{version}_Individuals_Installer.pkg",
+  pkg "wdav.pkg",
       choices: [
         {
           "choiceIdentifier" => "com.microsoft.package.Microsoft_AutoUpdate.app",
