@@ -2,8 +2,7 @@ cask "microsoft-defender" do
   version "101.24052.0013"
   sha256 "b1f346a5a0ab23b90df143471be4a2ab8e6d1f04489dd43210203e4bf3a0b5b9"
 
-  url "https://officecdnmac.microsoft.com/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Defender_#{version}_Individuals_Installer.pkg",
-      verified: "officecdn-microsoft-com.akamaized.net/"
+  url "https://officecdnmac.microsoft.com/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Defender_#{version}_Individuals_Installer.pkg"
   name "Microsoft Defender for Endpoint"
   desc "Antivirus software"
   homepage "https://www.microsoft.com/security/business/endpoint-security/microsoft-defender-endpoint"
