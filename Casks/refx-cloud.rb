@@ -13,7 +13,7 @@ cask "refx-cloud" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mavericks"
+  depends_on macos: ">= :ventura"
 
   pkg "reFX_Cloud_#{version}.pkg"
 
