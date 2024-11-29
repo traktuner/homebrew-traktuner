@@ -9,7 +9,7 @@ cask "refx-cloud" do
   livecheck do
     url "https://refx.com/cloud/version/"
     strategy :page_match
-    regex(/(\d+\.\d+\.\d+)\s*\d{4}-\d{2}-\d{2}/) # check if date is present after version
+    regex(/<div class="version mt-4">.*?<h1>(\d+\.\d+\.\d+)<\/h1>.*?<h2>\d{4}-\d{2}-\d{2}<\/h2>/i)
   end
 
   auto_updates true
