@@ -17,7 +17,7 @@ cask "refx-cloud" do
 
   pkg "reFX_Cloud_#{version}.pkg"
 
-  uninstall quit: "com.refx.pkg.reFXCloud",
+  uninstall quit: "refx cloud",
             pkgutil: [
               "com.refx.pkg.reFXCloud"
             ]
