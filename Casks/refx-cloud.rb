@@ -23,6 +23,7 @@ cask "refx-cloud" do
             ]
 
   zap trash: [
+    "~/Library/Application Support/reFX",
     "~/Library/Saved Application State/com.refx.cloud.savedState",
     "~/Library/Caches/reFX Cloud",
   ]
