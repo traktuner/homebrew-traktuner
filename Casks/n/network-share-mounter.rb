@@ -2,7 +2,7 @@ cask "network-share-mounter" do
   version "3.0.4"
   sha256 "2f9f84f5e918630dbe0f149632a6f2d818c3ae22f22e3967fee01cbf6903bea9"
 
-  url "https://gitlab.rrze.fau.de/faumac/networkShareMounter/-/releases/download/release-#{version}/NetworkShareMounter-#{version}.dmg"
+  url "https://gitlab.rrze.fau.de/api/v4/projects/506/packages/generic/networksharemounter/release-#{version}/NetworkShareMounter-#{version}.dmg"
   name "Network Share Mounter"
   desc "Tool for managing network shares"
   homepage "https://gitlab.rrze.fau.de/faumac/networkShareMounter"
