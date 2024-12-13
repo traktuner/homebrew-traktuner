@@ -15,7 +15,7 @@ cask "network-share-mounter" do
     end
   end
 
-  app "NetworkShareMounter.app"
+  app "Network Share Mounter.app"
 
   zap trash: [
     "~/Library/Application Scripts/de.fau.rrze.NetworkShareMounter-LaunchAtLoginHelper",
