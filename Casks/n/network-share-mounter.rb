@@ -12,6 +12,7 @@ cask "network-share-mounter" do
     regex(/"tag":"release-([0-9]+\.[0-9]+\.[0-9]+)"/i)
   end
 
+  auto_updates true
   depends_on macos: ">= :big_sur"
 
   app "Network Share Mounter.app"
