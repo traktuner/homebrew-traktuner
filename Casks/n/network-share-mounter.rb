@@ -7,11 +7,10 @@ cask "network-share-mounter" do
   desc "Tool for managing network shares"
   homepage "https://gitlab.rrze.fau.de/faumac/networkShareMounter"
 
-  livecheck do  
-    url 'https://gitlab.rrze.fau.de/faumac/networkShareMounter/-/releases.json'  
-    regex /"tag_name":"release-\d+(\.\d+)*/i
-  end
-  
+  livecheck do
+    url "https://gitlab.rrze.fau.de/faumac/networkShareMounter/-/releases.json"
+    regex(/"tag":"release-([0-9]+\.[0-9]+\.[0-9]+)"/i)
+  end  
 
   depends_on macos: ">= :big_sur"
   
