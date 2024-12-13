@@ -8,14 +8,10 @@ cask "network-share-mounter" do
   homepage "https://gitlab.rrze.fau.de/faumac/networkShareMounter"
 
   livecheck do
-    url "https://gitlab.rrze.fau.de/api/v4/projects/506/releases"
+    url "https://gitlab.rrze.fau.de/faumac/networkShareMounter/-/releases.json"
     regex(/"tag_name":"release-(\d+(?:\.\d+)+)"/i)
-    strategy :json do |json, regex|
-      json.map { |release| release["tag_name"] }
-          .select { |tag| tag.match?(regex) }
-          .map { |tag| tag.match(regex)[1] }
-    end
   end
+  
 
   depends_on macos: ">= :big_sur"
   
