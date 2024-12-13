@@ -17,8 +17,8 @@ cask "network-share-mounter" do
     end
   end
 
-  depends_on macos: ">= :big_sur" # Minimum OS version added
-
+  depends_on macos: ">= :big_sur"
+  
   app "Network Share Mounter.app"
 
   zap trash: [
