@@ -10,7 +10,6 @@ cask "network-share-mounter" do
   livecheck do  
     url 'https://gitlab.rrze.fau.de/faumac/networkShareMounter/-/releases.json'  
     regex /"tag_name":"release-\d+(\.\d+)*/i
-    end  
   end
   
 
