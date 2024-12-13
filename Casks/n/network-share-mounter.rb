@@ -11,9 +11,13 @@ cask "network-share-mounter" do
     url "https://gitlab.rrze.fau.de/api/v4/projects/506/releases"
     regex(/"tag_name":"release-(\d+(?:\.\d+)+)"/i)
     strategy :json do |json, regex|
-      json.map { |release| release["tag_name"] }.select { |tag| tag.match?(regex) }.map { |tag| tag.match(regex)[1] }
+      json.map { |release| release["tag_name"] }
+          .select { |tag| tag.match?(regex) }
+          .map { |tag| tag.match(regex)[1] }
     end
   end
+
+  depends_on macos: ">= :big_sur" # Minimum OS version added
 
   app "Network Share Mounter.app"
 
