@@ -1,2 +1,3 @@
 microsoft-defender
+network-share-mounter
 refx-cloud
