@@ -1,6 +1,6 @@
 cask "refx-cloud" do
-  version "3.0.18"
-  sha256 "c74577f826413bd04aef310bf7cbc6e6e20ee8d8790945845551fe0775fcd73b"
+  version "3.0.19"
+  sha256 "4d2573c5c475dd9e2a24891d10cc43ca9c9a830ae7cb8b4c54e36b0abf46c165"
 
   url "https://cloud.refx.com/update/reFX_Cloud_#{version}.pkg"
   name "reFX Cloud Application"
