@@ -8,9 +8,9 @@ cask "2fhey" do
   homepage "https://sofriendly.gumroad.com/l/2fhey"
 
   livecheck do
-    url "https://gumroad.com/r/e1621c37618aab38f0491222389c0595/product_files?product_file_ids%5B%5D=67GXU9CWO5B0AaTBx7cNqA%3D%3D"
-    strategy :header_match
-    regex(/2FHey[_\s-]?(\d+\.\d+(?:\.\d+)?)[\s-]?Installer\.dmg/i)
+    url "https://raw.githubusercontent.com/SoFriendly/2fhey/main/TwoFHey.xcodeproj/project.pbxproj"
+    strategy :page_match
+    regex(/PRODUCT_NAME = 2FHey;.*?MARKETING_VERSION = (\d+\.\d+(?:\.\d+)?);/m)
   end
 
   auto_updates true
