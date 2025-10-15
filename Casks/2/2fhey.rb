@@ -2,7 +2,7 @@ cask "2fhey" do
   version "1.3"
   sha256 "33722dcb8836be1667076051ced8bc737d0f0ef0817910969c57a7b00c1aadcf"
 
-  url "https://gumroad.com/r/e1621c37618aab38f0491222389c0595/product_files?product_file_ids%5B%5D=67GXU9CWO5B0AaTBx7cNqA%3D%3D"
+  url "https://gumroad.com/r/8ead109659ab27fde77bb34e76c05b75/product_files?product_file_ids%5B%5D=SzwZXLb7jNWhYM4gmZiz7A%3D%3D"
   name "2FHey"
   desc "iMessage OTP/2FA AutoFill"
   homepage "https://sofriendly.gumroad.com/l/2fhey"
