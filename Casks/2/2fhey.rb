@@ -1,5 +1,5 @@
 cask "2fhey" do
-  version "1.3"
+  version "2.0"
   sha256 :no_check
 
   url "https://gumroad.com/r/8ead109659ab27fde77bb34e76c05b75/product_files?product_file_ids%5B%5D=SzwZXLb7jNWhYM4gmZiz7A%3D%3D"
