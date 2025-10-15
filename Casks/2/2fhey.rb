@@ -1,11 +1,8 @@
 cask "2fhey" do
   version "1.3"
-  sha256 "33722dcb8836be1667076051ced8bc737d0f0ef0817910969c57a7b00c1aadcf"
+  sha256 "abdd1afbd8e9a02656ef7d09fdbff6698107676b29c451dbbad6fd20ca314654"
 
   url "https://gumroad.com/r/8ead109659ab27fde77bb34e76c05b75/product_files?product_file_ids%5B%5D=SzwZXLb7jNWhYM4gmZiz7A%3D%3D"
-  verified "gumroad.com"
-  referer "https://sofriendly.gumroad.com/l/2fhey"
-  user_agent :fake
   name "2FHey"
   desc "iMessage OTP/2FA AutoFill"
   homepage "https://sofriendly.gumroad.com/l/2fhey"
