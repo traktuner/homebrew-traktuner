@@ -2,7 +2,7 @@ cask "2fhey" do
   version "2.0"
   sha256 :no_check
 
-  url "https://gumroad.com/r/8ead109659ab27fde77bb34e76c05b75/product_files?product_file_ids%5B%5D=SzwZXLb7jNWhYM4gmZiz7A%3D%3D"
+  url "https://gumroad.com/r/b87af1395e7d054f9f9c0e4a34bfaa81/product_files?product_file_ids%5B%5D=fdmIwtxcrCV5vfmwzVd_nw%3D%3D"
   name "2FHey"
   desc "iMessage OTP/2FA AutoFill"
   homepage "https://sofriendly.gumroad.com/l/2fhey"
