@@ -7,7 +7,6 @@ on:
         description: Custom list of casks to livecheck and bump if outdated
         required: false
   schedule:
-    # Every 3 hours 23 minutes past the hour
     - cron: "23 */3 * * *"
 
 permissions:
@@ -19,6 +18,7 @@ jobs:
     env:
       HOMEBREW_DEVELOPER: 1
     runs-on: macos-26
+
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
@@ -31,11 +31,6 @@ jobs:
         uses: Homebrew/actions/git-user-config@main
         with:
           username: ${{ (github.event_name == 'workflow_dispatch' && github.actor) || 'BrewTestBot' }}
-
-      - name: Set up commit signing
-        uses: Homebrew/actions/setup-commit-signing@main
-        with:
-          signing_key: ${{ secrets.BREWTESTBOT_SSH_SIGNING_KEY }}
 
       - name: Bump casks
         id: autobump
