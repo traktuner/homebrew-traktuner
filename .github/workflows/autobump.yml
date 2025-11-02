@@ -16,30 +16,64 @@ permissions:
 jobs:
   autobump:
     if: github.repository == 'traktuner/homebrew-traktuner'
-    runs-on: macos-latest
+    env:
+      HOMEBREW_DEVELOPER: 1
+    runs-on: macos-26
+
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+        uses: Homebrew/actions/setup-homebrew@main
         with:
-          core: false
+          core: true
           cask: true
-          test-bot: false
 
       - name: Configure Git user
-        uses: Homebrew/actions/git-user-config@master
+        uses: Homebrew/actions/git-user-config@main
         with:
           username: ${{ (github.event_name == 'workflow_dispatch' && github.actor) || 'BrewTestBot' }}
 
-      - name: Get list of autobump casks
-        id: autobump
-        run: echo "autobump_list=$(xargs < "$(brew --repo traktuner/homebrew-traktuner)"/.github/autobump.txt)" >> "$GITHUB_OUTPUT"
+      - name: Set up commit signing (optional)
+        if: ${{ secrets.BREWTESTBOT_SSH_SIGNING_KEY != '' }}
+        uses: Homebrew/actions/setup-commit-signing@main
+        with:
+          signing_key: ${{ secrets.BREWTESTBOT_SSH_SIGNING_KEY }}
+
+      # Input bevorzugt, sonst .github/autobump.txt aus deinem Tap
+      - name: Resolve cask list
+        id: resolve-casks
+        shell: bash
+        run: |
+          if [[ -n "${{ github.event.inputs.casks }}" ]]; then
+            echo "CASKS=${{ github.event.inputs.casks }}" >> "$GITHUB_ENV"
+          else
+            FILE="$(brew --repo traktuner/homebrew-traktuner)/.github/autobump.txt"
+            if [[ -f "$FILE" ]]; then
+              CASKS=$(xargs < "$FILE")
+              echo "CASKS=$CASKS" >> "$GITHUB_ENV"
+            else
+              echo "CASKS=" >> "$GITHUB_ENV"
+              echo "::notice::Keine .github/autobump.txt gefunden und kein Input übergeben."
+            fi
+          fi
 
       - name: Bump casks
-        uses: Homebrew/actions/bump-packages@master
+        id: autobump
         continue-on-error: true
-        with:
-          token: ${{ secrets.GH_TOKEN_AUTOBUMP }}
-          casks: ${{ github.event.inputs.casks || steps.autobump.outputs.autobump_list }}
         env:
           HOMEBREW_TEST_BOT_AUTOBUMP: 1
+          # nutzt deinen PAT; falls leer, fallback auf GITHUB_TOKEN
+          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.GH_TOKEN_AUTOBUMP != '' && secrets.GH_TOKEN_AUTOBUMP || secrets.GITHUB_TOKEN }}
+          HOMEBREW_GIT_COMMITTER_NAME: BrewTestBot
+          HOMEBREW_GIT_COMMITTER_EMAIL: 1589480+BrewTestBot@users.noreply.github.com
+          CASKS: ${{ env.CASKS }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          BREW_BUMP=(brew bump --no-fork --open-pr --casks)
+
+          if [[ -n "${CASKS:-}" ]]; then
+            xargs "${BREW_BUMP[@]}" <<<"${CASKS}"
+          else
+            "${BREW_BUMP[@]}" --auto --tap=traktuner/homebrew-traktuner
+          fi
