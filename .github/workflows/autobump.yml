@@ -34,7 +34,7 @@ jobs:
           username: ${{ (github.event_name == 'workflow_dispatch' && github.actor) || 'BrewTestBot' }}
 
       - name: Set up commit signing (optional)
-        if: ${{ secrets.BREWTESTBOT_SSH_SIGNING_KEY != '' }}
+        if: ${{ secrets.BREWTESTBOT_SSH_SIGNING_KEY }}
         uses: Homebrew/actions/setup-commit-signing@main
         with:
           signing_key: ${{ secrets.BREWTESTBOT_SSH_SIGNING_KEY }}
