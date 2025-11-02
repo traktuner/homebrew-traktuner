@@ -19,7 +19,6 @@ jobs:
     env:
       HOMEBREW_DEVELOPER: 1
     runs-on: macos-26
-
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
@@ -33,46 +32,23 @@ jobs:
         with:
           username: ${{ (github.event_name == 'workflow_dispatch' && github.actor) || 'BrewTestBot' }}
 
-      - name: Set up commit signing (optional)
-        if: ${{ secrets.BREWTESTBOT_SSH_SIGNING_KEY }}
+      - name: Set up commit signing
         uses: Homebrew/actions/setup-commit-signing@main
         with:
           signing_key: ${{ secrets.BREWTESTBOT_SSH_SIGNING_KEY }}
 
-      # Input bevorzugt, sonst .github/autobump.txt aus deinem Tap
-      - name: Resolve cask list
-        id: resolve-casks
-        shell: bash
-        run: |
-          if [[ -n "${{ github.event.inputs.casks }}" ]]; then
-            echo "CASKS=${{ github.event.inputs.casks }}" >> "$GITHUB_ENV"
-          else
-            FILE="$(brew --repo traktuner/homebrew-traktuner)/.github/autobump.txt"
-            if [[ -f "$FILE" ]]; then
-              CASKS=$(xargs < "$FILE")
-              echo "CASKS=$CASKS" >> "$GITHUB_ENV"
-            else
-              echo "CASKS=" >> "$GITHUB_ENV"
-              echo "::notice::Keine .github/autobump.txt gefunden und kein Input übergeben."
-            fi
-          fi
-
       - name: Bump casks
         id: autobump
-        continue-on-error: true
         env:
           HOMEBREW_TEST_BOT_AUTOBUMP: 1
-          # nutzt deinen PAT; falls leer, fallback auf GITHUB_TOKEN
-          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.GH_TOKEN_AUTOBUMP != '' && secrets.GH_TOKEN_AUTOBUMP || secrets.GITHUB_TOKEN }}
+          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.GH_TOKEN_AUTOBUMP }}
           HOMEBREW_GIT_COMMITTER_NAME: BrewTestBot
           HOMEBREW_GIT_COMMITTER_EMAIL: 1589480+BrewTestBot@users.noreply.github.com
-          CASKS: ${{ env.CASKS }}
-        shell: bash
+          CASKS: ${{ inputs.casks }}
+        continue-on-error: true
         run: |
-          set -euo pipefail
           BREW_BUMP=(brew bump --no-fork --open-pr --casks)
-
-          if [[ -n "${CASKS:-}" ]]; then
+          if [[ -n "${CASKS-}" ]]; then
             xargs "${BREW_BUMP[@]}" <<<"${CASKS}"
           else
             "${BREW_BUMP[@]}" --auto --tap=traktuner/homebrew-traktuner
