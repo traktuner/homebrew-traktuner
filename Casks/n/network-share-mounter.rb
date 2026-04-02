@@ -1,6 +1,6 @@
 cask "network-share-mounter" do
-  version "4.0.1"
-  sha256 "9478aab6c65e18f3b7bec46473e09df03c01dca2017f72655b177b8af49e1917"
+  version "4.0.2"
+  sha256 "04ed1b926496a330a0c38e549f40f162ae5342b612ac5b51fba243ffe830e241"
 
   url "https://gitlab.rrze.fau.de/api/v4/projects/506/packages/generic/networksharemounter/release-#{version}/NetworkShareMounter-#{version}.dmg"
   name "Network Share Mounter"
