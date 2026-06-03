@@ -1,6 +1,6 @@
 cask "refx-cloud" do
-  version "3.0.22"
-  sha256 "45ad9eba83cd5c5bd79846e5468ee3718293710e3a46dfbc9d71373a5449bcdd"
+  version "3.1.1"
+  sha256 "ef687752a143313e93d5bda48afddc1eda54f8df4afa5d5bc218f482810f2283"
 
   url "https://cloud.refx.com/update/reFX_Cloud_#{version}.pkg"
   name "reFX Cloud Application"
@@ -15,7 +15,7 @@ cask "refx-cloud" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   pkg "reFX_Cloud_#{version}.pkg"
 
