@@ -8,20 +8,8 @@ cask "urbackup-client" do
   homepage "https://www.urbackup.org/"
 
   livecheck do
-    url "https://hndl.urbackup.org/Client/"
-    strategy :page_match do |page, url|
-      versions = page.scan(%r{href="(\d+\.\d+\.\d+)/"}).flatten.map { |v| Gem::Version.new(v) }.sort.reverse
-      
-      versions.each do |version|
-        version_str = version.to_s
-        client_url = "https://hndl.urbackup.org/Client/#{version_str}/UrBackup%20Client%20#{version_str}.pkg"
-        
-        response = Utils::URI.send(:open, client_url, method: :head)
-        return version_str if response.status[0] == "200"
-      end
-      
-      nil
-    end
+    url "https://www.urbackup.org/download.html"
+    regex(%r{Client/(\d+(?:\.\d+)+)/UrBackup%20Client%20\1\.pkg}i)
   end
 
   depends_on macos: :big_sur

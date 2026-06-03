@@ -9,7 +9,8 @@ cask "microsoft-defender" do
 
   livecheck do
     url "https://aka.ms/MacDefender"
-    strategy :extract_plist
+    regex(/Microsoft[._-]Defender[._-]v?(\d+(?:\.\d+)+)/i)
+    strategy :header_match
   end
 
   auto_updates true

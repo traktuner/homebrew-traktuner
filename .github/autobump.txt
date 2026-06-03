@@ -2,3 +2,4 @@
 microsoft-defender
 network-share-mounter
 refx-cloud
+urbackup-client

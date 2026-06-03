@@ -8,9 +8,10 @@ cask "refx-cloud" do
   homepage "https://refx.com/"
 
   livecheck do
-    url "https://refx.com/cloud/version/"
-    strategy :page_match
-    regex(%r{<div class="version mt-4">.*?<h1>(\d+\.\d+\.\d+)</h1>.*?<h2>\d{4}-\d{2}-\d{2}</h2>}i)
+    url "https://cloud.refx.com/update/0/"
+    strategy :json do |json|
+      json["version"]
+    end
   end
 
   auto_updates true

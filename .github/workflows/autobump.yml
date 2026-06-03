@@ -7,6 +7,7 @@ on:
         description: Custom list of casks to livecheck and bump if outdated
         required: false
   schedule:
+    # Every 3 hours 23 minutes past the hour
     - cron: "23 */3 * * *"
 
 permissions:
@@ -14,11 +15,10 @@ permissions:
 
 jobs:
   autobump:
-    if: github.repository == 'traktuner/homebrew-traktuner'
+    if: github.repository == 'traktuner/homebrew-tap'
     env:
       HOMEBREW_DEVELOPER: 1
     runs-on: macos-26
-
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
@@ -46,5 +46,5 @@ jobs:
           if [[ -n "${CASKS-}" ]]; then
             xargs "${BREW_BUMP[@]}" <<<"${CASKS}"
           else
-            "${BREW_BUMP[@]}" --auto --tap=traktuner/homebrew-traktuner
+            "${BREW_BUMP[@]}" --auto --tap=traktuner/tap
           fi
