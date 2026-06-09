@@ -15,7 +15,7 @@ cask "microsoft-defender" do
 
   auto_updates true
   depends_on cask: "microsoft-auto-update"
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
 
   pkg "Microsoft_Defender_#{version}_Individuals_Installer.pkg",
       choices: [
