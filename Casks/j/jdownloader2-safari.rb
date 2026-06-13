@@ -1,15 +1,16 @@
 cask "jdownloader2-safari" do
-  version "1.0.1"
-  sha256 "3661123ba2a944cf34e83c7e587fe6b0b3b467bb1f55cac228e03d6821fe4614"
+  version "1.0.2"
+  sha256 "e4595027e090b0691d7c0fd2196a944642fe51b6b895261517749abf0bd1de60"
 
-  # OCI blob in GitHub Packages (ghcr). Homebrew auto-detects the ghcr URL and
-  # pulls it (anonymously for a public package). The digest == sha256 of the
-  # zip; bump version + sha256 + the digest in the URL on each release (the CI
-  # job summary prints all three).
-  url "https://ghcr.io/v2/traktuner/jdownloader2-safari/blobs/sha256:3661123ba2a944cf34e83c7e587fe6b0b3b467bb1f55cac228e03d6821fe4614"
+  url "https://github.com/traktuner/jdownloader2-safari-extension/releases/download/v#{version}/MyJDownloader.zip"
   name "MyJDownloader Safari Extension"
   desc "Personal Safari port of the MyJDownloader browser extension"
   homepage "https://github.com/traktuner/jdownloader2-safari-extension"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   depends_on macos: :sonoma
 
@@ -31,6 +32,12 @@ cask "jdownloader2-safari" do
                             "--preserve-metadata=identifier,entitlements,requirements,flags,runtime",
                             "--sign", identity, target]
     end
+
+    # Homebrew quarantines the downloaded app; the locally re-signed (but not
+    # notarized) app would be blocked by Gatekeeper. Clear the quarantine flag
+    # now that it's signed with this Mac's own trusted Development identity.
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", app_path]
 
     # Launch once so Safari registers the extension.
     system_command "/usr/bin/open", args: [app_path]
