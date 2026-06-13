@@ -3,3 +3,4 @@ microsoft-defender
 network-share-mounter
 refx-cloud
 urbackup-client
+jdownloader2-safari
