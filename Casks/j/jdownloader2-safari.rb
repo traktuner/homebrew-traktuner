@@ -1,10 +1,12 @@
 cask "jdownloader2-safari" do
-  version :latest
-  sha256 :no_check
+  version "1.0.1"
+  sha256 "3661123ba2a944cf34e83c7e587fe6b0b3b467bb1f55cac228e03d6821fe4614"
 
-  # Private repo: authenticate the download with the locally signed-in gh token.
-  url "https://github.com/traktuner/jdownloader2-safari-extension/releases/latest/download/MyJDownloader.zip",
-      headers: ["Authorization: token #{`gh auth token 2>/dev/null`.strip}"]
+  # OCI blob in GitHub Packages (ghcr). Homebrew auto-detects the ghcr URL and
+  # pulls it (anonymously for a public package). The digest == sha256 of the
+  # zip; bump version + sha256 + the digest in the URL on each release (the CI
+  # job summary prints all three).
+  url "https://ghcr.io/v2/traktuner/jdownloader2-safari/blobs/sha256:3661123ba2a944cf34e83c7e587fe6b0b3b467bb1f55cac228e03d6821fe4614"
   name "MyJDownloader Safari Extension"
   desc "Personal Safari port of the MyJDownloader browser extension"
   homepage "https://github.com/traktuner/jdownloader2-safari-extension"
